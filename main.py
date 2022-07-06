@@ -2,8 +2,16 @@ import random
 #welcome to dart bot
 MainM = True
 #version and build number
+#check if number is an integer
+def isInt(number):
+    try:
+        int(number)
+        return True
+    except ValueError:
+        return False
+
 version = "1.0"
-build = "32h431c"
+build = "32h432c"
 #dart bot
 def randomThrow():
     #random throw
@@ -78,5 +86,21 @@ print("3) Play against computer")
 print("4) Exit")
 while MainM == True:
     modeM = input("Choose a mode to start (1-4)")
-    
+    print(modeM)
+    if(isInt(modeM) == True):
+        if(int(modeM) == 1):
+            print("Count down mode selected")
+            MainM=False
+        elif(int(modeM) == 2):
+            print("Play against each other mode selected")
+            MainM=False
+        elif(int(modeM) == 3):
+            print("Play against computer mode selected")
+            MainM=False
+        elif(int(modeM) == 4):
+            print("Exiting")
+            MainM=False
+            exit
+        else:
+            print("Invalid input! Try again! (1-4)")
 
