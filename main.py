@@ -11,7 +11,7 @@ def isInt(number):
         return False
 
 version = "1.0"
-build = "32h432c"
+build = "32h504g"
 #dart bot
 def randomThrow():
     #random throw
@@ -91,6 +91,46 @@ while MainM == True:
         if(int(modeM) == 1):
             print("Count down mode selected")
             MainM=False
+            Mode1=True
+            while Mode1 == True: 
+                inputloop=True
+                while inputloop == True:
+                    player = input("How much player? (1-2)")
+                    if(isInt(player) == True):
+                        print(player)
+                        if(int(player) > 0 and int(player)<3):
+                            inputloop=False
+                        else: 
+                            print("invalid input! Try again!")                    
+                    else: 
+                        print("invalid input! Try again!")
+                #programm start
+                print("Continue Programm.")
+                print(player)
+                if(int(player)==1):
+                    validinput=False
+                    while(validinput==False):
+                        print("Start count?")
+                        print("1) 101")
+                        print("2) 301")
+                        print("3) 501")
+                        startcount=0
+                        start=input("Select a start count! (1-3)")   
+                        if(isInt(start)):
+                            if(int(start)>0 and int(start)<4):
+                                validinput=True
+                                print(start)
+                                if(int(start)==1):
+                                    startcount=101
+                                if(int(start)==2):
+                                    startcount=301
+                                if(int(start)==3):
+                                    startcount=501
+                            else:
+                                print("invalid input! Try again!")
+                        else:
+                            print("invalid input! Try again!")
+                    print(startcount)
         elif(int(modeM) == 2):
             print("Play against each other mode selected")
             MainM=False
