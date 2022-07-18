@@ -1,4 +1,5 @@
 import random
+import time
 #welcome to dart bot
 MainM = True
 #version and build number
@@ -11,7 +12,7 @@ def isInt(number):
         return False
 
 version = "1.0"
-build = "32h506f"
+build = "32h507f"
 #dart bot
 def randomThrow():
     #random throw
@@ -87,7 +88,7 @@ def inputThrow():
             if(throw[0]=="S"):
                 throw=throw[1:]
                 if(isInt(throw)):
-                    if(int(throw)>0 and int(throw)<21 or int(throw)==25):
+                    if(int(throw)>=0 and int(throw)<21 or int(throw)==25):
                         validinput=True
                         return int(throw)
                     else: 
@@ -97,7 +98,7 @@ def inputThrow():
             elif(throw[0]=="D"):
                 throw=throw[1:]
                 if(isInt(throw)):
-                    if(int(throw)>0 and int(throw)<21 or int(throw)==25):
+                    if(int(throw)>=0 and int(throw)<21 or int(throw)==25):
                         validinput=True
                         throw=int(throw)*2
                         return int(throw)
@@ -108,7 +109,7 @@ def inputThrow():
             elif(throw[0]=="T"):
                 throw=throw[1:]
                 if(isInt(throw)):
-                    if(int(throw)>0 and int(throw)<21):
+                    if(int(throw)>=0 and int(throw)<21):
                         validinput=True
                         throw=int(throw)*3
                         return int(throw)
@@ -182,11 +183,35 @@ while MainM == True:
                         print("Player 1, 3 throws. Throw!")
                         throws=0
                         trithrows=3
+                        total3=0
                         while trithrows != 0:
                             throws=throws+1
-                            randomThrow()
+                            currentThrow=inputThrow()
+                            startcount=startcount-currentThrow
                             trithrows=trithrows-1
-
+                            total3=total3+currentThrow
+                            if(currentThrow !=0):
+                                print("---")
+                                print("Good Throw! Remaining score: "+str(startcount))
+                                print("---")
+                            else:
+                                print("---")
+                                print("Noob! Remaining score: "+str(startcount)+" (Same as before ;-))")
+                                print("---")
+                            #print(trithrows)
+                            #print(startcount)
+                        print("---<>---")
+                        print("3 throws done!")
+                        print("Score: "+str(startcount))
+                        print("Resuming in 3 seconds...")
+                        time.sleep(1)
+                        print("Resuming in 2 seconds...")
+                        time.sleep(1)
+                        print("Resuming in 1 seconds...")
+                        time.sleep(1)
+                        print("Resuming.")
+                        total3=0
+                        print("---<>---")
         elif(int(modeM) == 2):
             print("Play against each other mode selected")
             MainM=False
