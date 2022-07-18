@@ -12,7 +12,7 @@ def isInt(number):
         return False
 
 version = "1.0"
-build = "32h507f"
+build = "32h510j"
 #dart bot
 def randomThrow():
     #random throw
@@ -81,6 +81,7 @@ def inputThrow():
     print("Syntax: 1st: type of field (S=single; D=double; T=tribble) 2nd: number of field (1-20; 25; 50)")
     print("Example: S17")
     validinput=False
+    lastThrowDouble=False
     while validinput == False:
         throw = input("Enter thow!")
         throw=throw.upper()
@@ -90,7 +91,9 @@ def inputThrow():
                 if(isInt(throw)):
                     if(int(throw)>=0 and int(throw)<21 or int(throw)==25):
                         validinput=True
-                        return int(throw)
+                        lastThrowDouble=False
+                        return int(throw),lastThrowDouble
+                        
                     else: 
                         print("Invalid input! (Impossible Throw) Valid: 1-20, 25")
                 else:
@@ -101,7 +104,9 @@ def inputThrow():
                     if(int(throw)>=0 and int(throw)<21 or int(throw)==25):
                         validinput=True
                         throw=int(throw)*2
-                        return int(throw)
+                        lastThrowDouble=True
+                        return int(throw),lastThrowDouble
+                        
                     else: 
                         print("Invalid input! (Impossible Throw) Valid: 1-20, 25")
                 else:
@@ -112,7 +117,9 @@ def inputThrow():
                     if(int(throw)>=0 and int(throw)<21):
                         validinput=True
                         throw=int(throw)*3
-                        return int(throw)
+                        lastThrowDouble=False
+                        return int(throw),lastThrowDouble
+                        
                     else: 
                         print("Invalid input! (Impossible Throw) Valid: 1-20")
                 else:
@@ -179,39 +186,66 @@ while MainM == True:
                             print("invalid input! Try again!")
                     print(startcount)
                     print("Start count: "+str(startcount))
-                    while startcount != 0:
-                        print("Player 1, 3 throws. Throw!")
-                        throws=0
-                        trithrows=3
-                        total3=0
-                        while trithrows != 0:
-                            throws=throws+1
-                            currentThrow=inputThrow()
-                            startcount=startcount-currentThrow
-                            trithrows=trithrows-1
-                            total3=total3+currentThrow
-                            if(currentThrow !=0):
-                                print("---")
-                                print("Good Throw! Remaining score: "+str(startcount))
-                                print("---")
-                            else:
-                                print("---")
-                                print("Noob! Remaining score: "+str(startcount)+" (Same as before ;-))")
-                                print("---")
-                            #print(trithrows)
-                            #print(startcount)
-                        print("---<>---")
-                        print("3 throws done!")
-                        print("Score: "+str(startcount))
-                        print("Resuming in 3 seconds...")
-                        time.sleep(1)
-                        print("Resuming in 2 seconds...")
-                        time.sleep(1)
-                        print("Resuming in 1 seconds...")
-                        time.sleep(1)
-                        print("Resuming.")
-                        total3=0
-                        print("---<>---")
+                    playInProgress=True
+                    while playInProgress==True:
+                        while startcount != 0:
+                            print("Remaining score: "+str(startcount))
+                            throws=0
+                            trithrows=3
+                            total3=0
+                            while trithrows != 0:
+                                if(startcount!=0):
+                                    throws=throws+1
+                                    currentThrow,DoubleQ=inputThrow()
+                                    #print(DoubleQ)
+                                    startcount=startcount-currentThrow
+                                    trithrows=trithrows-1
+                                    total3=total3+currentThrow
+                                    if(startcount<0):
+                                        print("BUST!")
+                                        trithrows=0
+                                        startcount=startcount+currentThrow
+                                    else:
+                                        if(currentThrow !=0):
+                                            print("---")
+                                            print("Good Throw! Remaining score: "+str(startcount))
+                                            print("---")
+                                        else:
+                                            print("---")
+                                            print("Noob! Remaining score: "+str(startcount)+" (Same as before ;-))")
+                                            print("---")
+                                    if(startcount==0):
+                                        if(DoubleQ==True):
+                                            print("Finished! Congrats.")
+                                            print("---<>---")
+                                            print("STATS")
+                                            print("Throws: "+str(throws))
+                                            print("3 dart avg: "+str(total3/throws))
+                                            print("---<>---")
+                                            playInProgress=False
+
+                                        else:
+                                            print("Must finish with double! -> BUST!")
+                                            startcount=startcount+currentThrow
+                                    if(startcount==1):
+                                        print("Must finish with double! -> BUST!")
+                                        trithrows=0
+                                        startcount=startcount+currentThrow
+                            if(startcount!=0):
+                                print("---<>---")
+                                print("3 throws done!")
+                                print("Score: "+str(startcount))
+                                print("Throws so far: "+str(throws))
+                                print("3 dart Avg: "+str(total3/throws))
+                                print("Resuming in 3 seconds...")
+                                time.sleep(1)
+                                print("Resuming in 2 seconds...")
+                                time.sleep(1)
+                                print("Resuming in 1 seconds...")
+                                time.sleep(1)
+                                print("Resuming.")
+                                total3=0
+                                print("---<>---")
         elif(int(modeM) == 2):
             print("Play against each other mode selected")
             MainM=False
