@@ -12,7 +12,7 @@ def isInt(number):
         return False
 
 version = "1.0"
-build = "32h512j"
+build = "32h513j"
 #dart bot
 def randomThrow():
     #random throw
@@ -78,7 +78,7 @@ def randomThrow():
     print(scoretext)
 def inputThrow():
     print("Input your throw")
-    print("Syntax: 1st: type of field (S=single; D=double; T=tribble) 2nd: number of field (1-20; 25; 50)")
+    print("Syntax: 1st: type of field (S=single; D=double; T=tribble) 2nd: number of field (1-20; 25)")
     print("Example: S17")
     validinput=False
     lastThrowDouble=False
@@ -135,8 +135,8 @@ print("Version: "+version+" Build: "+build)
 print("---<>---")
 print("Available modes:")
 print("1) Count down (Classic)")
-print("2) Play against each other")
-print("3) Play against computer")
+print("2) Play against each other | limited")
+print("3) Play against computer | limited")
 print("4) Exit")
 while MainM == True:
     modeM = input("Choose a mode to start (1-4)")
@@ -149,7 +149,7 @@ while MainM == True:
             while Mode1 == True: 
                 inputloop=True
                 while inputloop == True:
-                    player = input("How much player? (1-2)")
+                    player = input("How much player? (1-2) | 2 Players limited")
                     if(isInt(player) == True):
                         print(player)
                         if(int(player) > 0 and int(player)<3):
