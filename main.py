@@ -12,7 +12,7 @@ def isInt(number):
         return False
 
 version = "1.0"
-build = "32h510j"
+build = "32h512j"
 #dart bot
 def randomThrow():
     #random throw
@@ -140,7 +140,7 @@ print("3) Play against computer")
 print("4) Exit")
 while MainM == True:
     modeM = input("Choose a mode to start (1-4)")
-    print(modeM)
+    #print(modeM)
     if(isInt(modeM) == True):
         if(int(modeM) == 1):
             print("Count down mode selected")
@@ -223,7 +223,18 @@ while MainM == True:
                                             print("3 dart avg: "+str(total3/throws))
                                             print("---<>---")
                                             playInProgress=False
-
+                                            input("Press any ENTER to return to the main menu.")
+                                            Mode1=False
+                                            print("---<>---")
+                                            print("DartCompanion by joernitrautDE")
+                                            print("Version: "+version+" Build: "+build)
+                                            print("---<>---")
+                                            print("Available modes:")
+                                            print("1) Count down (Classic)")
+                                            print("2) Play against each other")
+                                            print("3) Play against computer")
+                                            print("4) Exit")
+                                            MainM=True
                                         else:
                                             print("Must finish with double! -> BUST!")
                                             startcount=startcount+currentThrow
