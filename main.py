@@ -11,7 +11,7 @@ def isInt(number):
         return False
 
 version = "1.0"
-build = "32h504g"
+build = "32h506f"
 #dart bot
 def randomThrow():
     #random throw
@@ -75,6 +75,52 @@ def randomThrow():
     
     print(score)
     print(scoretext)
+def inputThrow():
+    print("Input your throw")
+    print("Syntax: 1st: type of field (S=single; D=double; T=tribble) 2nd: number of field (1-20; 25; 50)")
+    print("Example: S17")
+    validinput=False
+    while validinput == False:
+        throw = input("Enter thow!")
+        throw=throw.upper()
+        if(len(throw)<4 and len(throw)>1):
+            if(throw[0]=="S"):
+                throw=throw[1:]
+                if(isInt(throw)):
+                    if(int(throw)>0 and int(throw)<21 or int(throw)==25):
+                        validinput=True
+                        return int(throw)
+                    else: 
+                        print("Invalid input! (Impossible Throw) Valid: 1-20, 25")
+                else:
+                    print("Valid Indicator but Invalid input after! Try again!")
+            elif(throw[0]=="D"):
+                throw=throw[1:]
+                if(isInt(throw)):
+                    if(int(throw)>0 and int(throw)<21 or int(throw)==25):
+                        validinput=True
+                        throw=int(throw)*2
+                        return int(throw)
+                    else: 
+                        print("Invalid input! (Impossible Throw) Valid: 1-20, 25")
+                else:
+                    print("Valid Indicator but Invalid input after! Try again!")
+            elif(throw[0]=="T"):
+                throw=throw[1:]
+                if(isInt(throw)):
+                    if(int(throw)>0 and int(throw)<21):
+                        validinput=True
+                        throw=int(throw)*3
+                        return int(throw)
+                    else: 
+                        print("Invalid input! (Impossible Throw) Valid: 1-20")
+                else:
+                    print("Valid Indicator but Invalid input after! Try again!")
+            else:
+                print("Invalid or missing indicator of field type (S; D; T) Try again!")
+        else:
+            print("Invalid input! Try again!")
+            
 print("---<>---")
 print("DartCompanion by joernitrautDE")
 print("Version: "+version+" Build: "+build)
@@ -131,9 +177,20 @@ while MainM == True:
                         else:
                             print("invalid input! Try again!")
                     print(startcount)
+                    print("Start count: "+str(startcount))
+                    while startcount != 0:
+                        print("Player 1, 3 throws. Throw!")
+                        throws=0
+                        trithrows=3
+                        while trithrows != 0:
+                            throws=throws+1
+                            randomThrow()
+                            trithrows=trithrows-1
+
         elif(int(modeM) == 2):
             print("Play against each other mode selected")
             MainM=False
+            print(inputThrow())
         elif(int(modeM) == 3):
             print("Play against computer mode selected")
             MainM=False
