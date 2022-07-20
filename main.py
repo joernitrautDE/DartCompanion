@@ -12,7 +12,7 @@ def isInt(number):
         return False
 
 version = "1.0"
-build = "32h513j"
+build = "32h514j"
 #dart bot
 def randomThrow():
     #random throw
@@ -187,10 +187,11 @@ while MainM == True:
                     print(startcount)
                     print("Start count: "+str(startcount))
                     playInProgress=True
+                    throws=0
+                    total=0
                     while playInProgress==True:
                         while startcount != 0:
                             print("Remaining score: "+str(startcount))
-                            throws=0
                             trithrows=3
                             total3=0
                             while trithrows != 0:
@@ -201,6 +202,7 @@ while MainM == True:
                                     startcount=startcount-currentThrow
                                     trithrows=trithrows-1
                                     total3=total3+currentThrow
+                                    total=total+currentThrow
                                     if(startcount<0):
                                         print("BUST!")
                                         trithrows=0
@@ -220,7 +222,7 @@ while MainM == True:
                                             print("---<>---")
                                             print("STATS")
                                             print("Throws: "+str(throws))
-                                            print("3 dart avg: "+str(total3/throws))
+                                            print("3 dart avg: "+str(total/throws))
                                             print("---<>---")
                                             playInProgress=False
                                             input("Press any ENTER to return to the main menu.")
@@ -247,7 +249,8 @@ while MainM == True:
                                 print("3 throws done!")
                                 print("Score: "+str(startcount))
                                 print("Throws so far: "+str(throws))
-                                print("3 dart Avg: "+str(total3/throws))
+                                print("3 dart Avg: "+str(total/throws))
+                                print("Last 3 darts scrore: "+str(total3))
                                 print("Resuming in 3 seconds...")
                                 time.sleep(1)
                                 print("Resuming in 2 seconds...")
